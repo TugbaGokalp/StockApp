@@ -8,6 +8,7 @@ import {
   registerSuccess,
 } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toastSuccessNotify } from "../helper/ToastNotify";
 
 const useAuthCall = () => {
   const dispatch = useDispatch();
