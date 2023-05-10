@@ -1,26 +1,36 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import useStockCall from "../hooks/useStockCall";
 import { useSelector } from "react-redux";
-
+import FirmCard from "../components/FirmCard";
+import { flex } from "../styles/globalStyle";
+// import { flex } from "../styles/globalStyle"
 
 const Firms = () => {
+  const { getStockData } = useStockCall();
+  const { firms } = useSelector((state) => state.stock);
+  useEffect(() => {
+    // getfirms();
 
-  const {getStockData} = useStockCall()
-    useEffect(() => {
-      // getfirms();
+    getStockData("firms");
+  }, []);
 
-      getStockData("firms")
-    }, []);
+  return (
+    <div>
+      <Typography variant="h4" color="error" mb={3}>
+        Firm
+      </Typography>
+      <Button variant="contained">New Firm</Button>
 
-    return (
-      <div>
-        <Typography variant="h4" color="error" mb={3}>
-          Firm
-        </Typography>
-        <Button variant="contained">New Firm</Button>
-      </div>
-    );
-  };
+      <Grid container sx={flex}>
+        {firms?.map((firm) => (
+          <Grid item key={firm.id}>
+            <FirmCard firm={firm} />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  );
+};
 // };
 export default Firms;

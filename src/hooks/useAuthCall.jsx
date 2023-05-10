@@ -21,7 +21,7 @@ const BASE_URL = "https://12312.fullstack.clarusway.com/";
       const { data } = await axios.post(
         `${BASE_URL}account/auth/login/`,
         userInfo
-      );
+      )
       dispatch(loginSuccess(data)); // burada data payload'dur
       console.log(data);
       toastSuccessNotify("Login performed")
@@ -37,9 +37,9 @@ const BASE_URL = "https://12312.fullstack.clarusway.com/";
     dispatch(fetchStart());
 
     try {
-      const { data } = await axios.post(`${BASE_URL}account/auth/logout/`);
-      dispatch(logoutSuccess(data));
-      console.log(data);
+      await axios.post(`${BASE_URL}account/auth/logout/`);
+      dispatch(logoutSuccess());
+     
       toastSuccessNotify("Logout performed")
       navigate("/");
     } catch (error) {
@@ -56,7 +56,7 @@ const BASE_URL = "https://12312.fullstack.clarusway.com/";
       const { data } = await axios.post(
         `${BASE_URL}account/register/`,
         userInfo
-      );
+      )
       dispatch(registerSuccess(data));
       console.log(data);
       navigate("/stock");
