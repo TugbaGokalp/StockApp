@@ -30,7 +30,7 @@ const useStockCall = () => {
       await axios.delete(`${BASE_URL}stock/${url}/${id}/ `, {
         headers: { Authorization: `Token ${token}` },
       });
-      dispatch(getSuccess());
+      getStockData({url})
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
