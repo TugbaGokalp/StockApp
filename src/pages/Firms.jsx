@@ -20,7 +20,7 @@ const Firms = () => {
       <Typography variant="h4" color="error" mb={3}>
         Firm
       </Typography>
-      <Button variant="contained">New Firm</Button>
+      <Button variant="contained" style={{marginBottom: "20px"}}>New Firm</Button>
 
       <Grid container sx={flex}>
         {firms?.map((firm) => (
