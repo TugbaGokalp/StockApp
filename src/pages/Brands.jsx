@@ -1,13 +1,18 @@
 import { Button, Grid, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useStockCall from "../hooks/useStockCall";
 import { useSelector } from "react-redux";
 import BrandCard from "../components/BrandCard";
 import { flex } from "../styles/globalStyle";
+import BrandModal from "../components/modals/BrandModal";
 
 const Brands = () => {
   const { getStockData } = useStockCall();
   const { brands } = useSelector((state) => state.stock); // get brands from redux with useSelector() for usage of management of state
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   useEffect(() => {
     // This part runs only once and is called after the component is loaded.
     getStockData("brands");
@@ -18,9 +23,11 @@ const Brands = () => {
       <Typography variant="h4" color="error" mb={3}>
         Brand
       </Typography>
-      <Button variant="contained" style={{ marginBottom: "20px" }}>
+      <Button variant="contained" style={{ marginBottom: "20px" }} onClick={handleOpen}>
         New Brand
       </Button>
+
+      <BrandModal open={open} handleClose={handleClose}/>
 
       <Grid container sx={flex}>
         {brands?.map((brand) => (
