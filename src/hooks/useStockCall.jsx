@@ -2,11 +2,11 @@ import { useDispatch } from "react-redux";
 import { fetchFail, fetchStart, getSuccess } from "../features/stockSlice";
 
 import useAxios from "./useAxios";
-import { toastSuccessNotify } from "../helper/ToastNotify";
+import { toastSuccessNotify, toastErrorNotify } from "../helper/ToastNotify";
 
 const useStockCall = () => {
   const dispatch = useDispatch();
-  
+
   const { axiosWithToken } = useAxios(); // take axiosWithToken from useAxios
 
   const getStockData = async (url) => {
@@ -28,20 +28,32 @@ const useStockCall = () => {
   };
 
   const deleteStockData = async (url, id) => {
-   
     dispatch(fetchStart());
     try {
-      await axiosWithToken.delete(`stock/${url}/${id}/`)
-      toastSuccessNotify(`${url} successfuly deleted`)
-      getStockData( url );
+      await axiosWithToken.delete(`stock/${url}/${id}/`);
+      toastSuccessNotify(`${url} successfuly deleted`);
+      getStockData(url);
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
-      // toastErrorNotify(`${url} can not be deleted`)
+      toastErrorNotify(`${url} can not be deleted`)
     }
   };
 
-  return { getStockData, deleteStockData,  };
+  const postStockData = async (url, info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.post(`stock/${url}/`, info);
+      toastSuccessNotify(`${url} successfuly posted`);
+      getStockData(url);
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toastErrorNotify(`${url} can not be posted`);
+    }
+  };
+
+  return { getStockData, deleteStockData, postStockData };
 };
 
 export default useStockCall;
