@@ -8,9 +8,7 @@ import { Button } from "@mui/material";
 import useStockCall from "../../hooks/useStockCall";
 
 export default function FirmModal({ open, handleClose, info, setInfo }) {
- 
-
-  const { postStockData } = useStockCall();
+  const { postStockData, putStockData } = useStockCall();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +17,13 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postStockData("firms", info);
+
+    if (info.id) {
+      putStockData("firms", info);
+    } else {
+      postStockData("firms", info);
+    }
+
     handleClose();
     setInfo({
       name: "",
@@ -32,7 +36,14 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => {
+          handleClose()
+           setInfo({ name: "",
+           phone: "",
+           address: "",
+           image: "",}) //also used to reset information in modal when clicked outside the modal.
+
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
