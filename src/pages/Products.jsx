@@ -95,7 +95,7 @@ const Products = () => {
     // getStockData("categories")
     // getStockData("brands")
 
-    //! Promise All
+    //! Promise All is in the JavaScript natively 
     getProCatBrand()
   }, []) // eslint-disable-line
 

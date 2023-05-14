@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 export default function ProductModal({ open, handleClose, info, setInfo }) {
   const { postStockData } = useStockCall();
-  const {categories} = useSelector((state) => state.stock )
+  const { categories } = useSelector((state) => state.stock);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,10 +27,9 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
 
     handleClose();
     setInfo({
+      category: "",
+      brand: "",
       name: "",
-      phone: "",
-      address: "",
-      image: "",
     });
   };
   return (
@@ -39,7 +38,8 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
         open={open}
         onClose={() => {
           handleClose();
-          setInfo({ name: "", phone: "", address: "", image: "" }); //also used to reset information in modal when clicked outside the modal.
+          setInfo({ category: "", brand: "", name: "" });
+          //also used to reset information in modal when clicked outside the modal.
         }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -59,13 +59,11 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
                 label="Category"
                 onChange={handleChange}
               >
-
-
-                {categories?.map((item) => 
-                <MenuItem value={10}>{item.name}</MenuItem>
-                )}
-                
-                
+                {categories?.map((item) => (
+                  <MenuItem key={item.id} value={10}>
+                    {item.name}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
             <TextField
