@@ -125,7 +125,7 @@ const Products = () => {
           disableRowSelectionOnClick
           slots={{ toolbar: GridToolbar }}
           sx={{
-            boxShadow: 4,
+            boxShadow: 4, 
           }}
         />
       </Box>
