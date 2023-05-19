@@ -3,6 +3,7 @@ import { useEffect } from "react"
 
 import KpiCards from "../components/KpiCards"
 import useStockCall from "../hooks/useStockCall"
+import Charts from "../components/Charts"
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
     <div>
       <Typography variant='h4' color="error" mb={3}>DASHBOARD</Typography>
       <KpiCards/>
+      <Charts/>
       
     </div>
   )
