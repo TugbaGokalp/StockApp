@@ -8,16 +8,16 @@ import { object, string } from "yup"
 
 export const loginScheme = object({
   email: string()
-    .email("Lutfen valid bir email giriniz")
-    .required("Email zorunludur"),
+    .email("Please enter a valid email")
+    .required("Please enter a valid email"),
   password: string()
-    .required("password zorunludur")
-    .min(8, "password en az 8 karakter olmalıdır")
-    .max(20, "password en fazla 20 karakter olmalıdır")
-    .matches(/\d+/, "Password bir sayı içermelidir")
-    .matches(/[a-z]/, "Password bir küçük harf içermelidir")
-    .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
-    .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
+    .required("Please enter a valid password")
+    .min(8, "Password must at least 8 characters")
+    .max(20, "Password cannot exceed 20 characters.")
+    .matches(/\d+/, "Password must contain a number.")
+    .matches(/[a-z]/, "Password must contain a lowercase letter.")
+    .matches(/[A-Z]/, "Password must contain at least one capital letter.")
+    .matches(/[!,?{}><%&$#£+-.]+/, "Password must contain a special character."),
 })
 
 const LoginForm = ({ values, handleChange, errors, touched, handleBlur }) => {
@@ -38,7 +38,7 @@ const LoginForm = ({ values, handleChange, errors, touched, handleBlur }) => {
           error={touched.email && Boolean(errors.email)}
         />
         <TextField
-          label="password"
+          label="Password"
           name="password"
           id="password"
           type="password"
