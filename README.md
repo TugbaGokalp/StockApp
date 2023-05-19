@@ -7,7 +7,7 @@
 ```
 npm install or yarn
 ```
-![Project Snapshot](StockApp.gif)
+
 
 ## Project Skeleton
 
@@ -79,7 +79,7 @@ SOLUTION
 
 ![Project Snapshot](StockApp.gif)
 
-## This project is a React application that provides stock management and an admin panel for a company. The project is developed using various libraries, and the libraries used and their purposes are listed below:
+## The project is developed using various libraries, and the libraries used and their purposes are listed below:
 
 - `@reduxjs/toolkit`: Used for managing application state with Redux toolkit.
 - `react-redux`: Used to integrate Redux into the React application.
@@ -120,7 +120,7 @@ Additionally, the hook includes a "getProCatBrand" function that sends three sim
 The hook returns these functions, allowing components to easily make stock-related API calls and handle the responses accordingly.
 
 
-## store.jsx
+## Store
 
 `store.jsx`configures a Redux store using the configureStore function. It includes two reducers, authReducer and stockReducer. Additionally, it utilizes Redux Persist to store data in the browser's memory. The code sets up persistence configuration using the persistStore and persistReducer functions from the redux-persist package, applying it to the authReducer. This ensures that data from the auth reducer is persisted.
 
