@@ -7,7 +7,7 @@
 ```
 npm install or yarn
 ```
-
+![Project Snapshot](StockApp.gif)
 
 ## Project Skeleton
 
